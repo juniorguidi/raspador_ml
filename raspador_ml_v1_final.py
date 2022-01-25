@@ -1,3 +1,4 @@
+from urllib import request
 import requests, time, telegram_send, sys
 from bs4 import BeautifulSoup
 
@@ -24,13 +25,13 @@ def envia_mensagem_telegram(menor_preco, menor_titulo, menor_link, menor_estado)
     print("\n\n")
 
     telegram_send.send(messages=[mensagem])
-
+    requests.post("https://api.telegram.org/bot5007298889:AAFKWmInELsETietqfPo8t3RDx8__uMtdfs/sendMessage?chat_id=-1001733993915&text=" + mensagem)
 
 menor_preco = 10000.00
 url = "https://lista.mercadolivre.com.br/novo/"
 #pesquisa = url + input("Produto: ")
-#pesquisa = "ssd 512"
-pesquisa = str(sys.argv[1])
+pesquisa = "ssd 512"
+#pesquisa = str(sys.argv[1])
 
 link_pesquisa = url+pesquisa
 
