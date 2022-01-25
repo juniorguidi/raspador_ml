@@ -30,8 +30,8 @@ def envia_mensagem_telegram(menor_preco, menor_titulo, menor_link, menor_estado)
 menor_preco = 10000.00
 url = "https://lista.mercadolivre.com.br/novo/"
 #pesquisa = url + input("Produto: ")
-pesquisa = "ssd 512"
-#pesquisa = str(sys.argv[1])
+#pesquisa = "ssd 512"
+pesquisa = str(sys.argv[1])
 
 link_pesquisa = url+pesquisa
 
