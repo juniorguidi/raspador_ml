@@ -7,4 +7,4 @@
 <br>telegram-send --configure
 <br>pip install bs4
 <br>python3 raspador_ml_v1_final.py
-<br>watch -n 10 python3 raspador_ml_v1_final.py
+<br>watch -n 10 python3 raspador_ml.py motorola
