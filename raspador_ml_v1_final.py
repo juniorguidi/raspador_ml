@@ -1,3 +1,4 @@
+from gettext import find
 from urllib import request
 import requests, time, telegram_send, sys
 from bs4 import BeautifulSoup
@@ -30,8 +31,8 @@ def envia_mensagem_telegram(menor_preco, menor_titulo, menor_link, menor_estado)
 menor_preco = 10000.00
 url = "https://lista.mercadolivre.com.br/novo/"
 #pesquisa = url + input("Produto: ")
-#pesquisa = "ssd 512"
-pesquisa = str(sys.argv[1])
+pesquisa = "acer i5"
+#pesquisa = str(sys.argv[1])
 
 link_pesquisa = url+pesquisa
 
@@ -59,14 +60,16 @@ if (int(lista)==1):
             preco_produto = preco_produto.replace(".","")
             preco_produto = float(preco_produto.replace(",", "."))
 
-            if (preco_produto < menor_preco):
-                menor_preco = preco_produto
-                if (titulo.text):
-                    menor_titulo = titulo.text
-                else:
-                    menor_titulo = "VAZIO!"               
-                menor_link = link["href"]
-                menor_estado = estado
+
+            if (titulo.text.find(pesquisa)):
+                if (preco_produto < menor_preco):
+                    menor_preco = preco_produto
+                    if (titulo.text):
+                        menor_titulo = titulo.text
+                    else:
+                        menor_titulo = "VAZIO!"               
+                    menor_link = link["href"]
+                    menor_estado = estado
     else:
         menor_titulo = "Não encontrado."
         menor_link = "Não encontrado."
@@ -93,15 +96,16 @@ else:
 
             preco_produto = preco_produto.replace(".","")
             preco_produto = float(preco_produto.replace(",", "."))
-
-            if (preco_produto < menor_preco):
-                menor_preco = preco_produto
-                if (titulo.text):
-                    menor_titulo = titulo.text
-                else:
-                    menor_titulo = "VAZIO!"               
-                menor_link = link["href"]
-                menor_estado = estado
+            
+            if (titulo.text.find(pesquisa)):
+                if (preco_produto < menor_preco):
+                    menor_preco = preco_produto
+                    if (titulo.text):
+                        menor_titulo = titulo.text
+                    else:
+                        menor_titulo = "VAZIO!"               
+                    menor_link = link["href"]
+                    menor_estado = estado
         
 
 envia_mensagem_telegram(menor_preco, menor_titulo, menor_link, menor_estado)
